@@ -2,16 +2,25 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
+async function seedProfiles() {
+  await prisma.profile.createMany({
+    data: [{ name: 'ADMINISTRADOR' }],
+    skipDuplicates: true,
+  })
+}
+
 async function seedUsers() {
   await prisma.user.createMany({
     data: [
       {
         name: 'USUARIO 1',
+        profile_id: 1,
         email: 'usuario1@gmail.com',
         password: '202cb962ac59075b964b07152d234b70', // 123
       },
       {
         name: 'USUARIO 2',
+        profile_id: 1,
         email: 'usuario2@gmail.com',
         password: '250cf8b51c773f3f8dc8b4be867a9a02', // 456
       },
@@ -22,6 +31,7 @@ async function seedUsers() {
 
 async function main() {
   console.log('seeds....')
+  await seedProfiles()
   await seedUsers()
 }
 

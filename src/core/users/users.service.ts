@@ -7,13 +7,20 @@ export class UsersService {
   constructor(private prismaService: PrismaService) {}
 
   async findMany(): Promise<User[] | undefined> {
-    return await this.prismaService.user.findMany()
+    return await this.prismaService.user.findMany({
+      include: {
+        profile: true,
+      },
+    })
   }
 
   async findUnique(email: string): Promise<User | undefined> {
     return await this.prismaService.user.findUnique({
       where: {
         email,
+      },
+      include: {
+        profile: true,
       },
     })
   }

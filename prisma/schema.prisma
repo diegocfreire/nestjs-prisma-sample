@@ -10,11 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Profile {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  users User[]
+
+  @@map("profiles")
+}
+
 model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  email    String @unique
-  password String
+  id         Int    @id @default(autoincrement())
+  profile_id Int
+  name       String
+  email      String @unique
+  password   String
+
+  profile Profile @relation(fields: [profile_id], references: [id])
 
   @@map("users")
 }
