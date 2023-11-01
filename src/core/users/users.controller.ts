@@ -1,13 +1,27 @@
-import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common'
+import { Controller, Get, Query } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 import { UsersService } from './users.service'
 
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @HttpCode(HttpStatus.OK)
   @Get('/')
-  findMany() {
-    return this.usersService.findMany()
+  async findMany() {
+    const data = await this.usersService.findMany()
+    return {
+      data,
+      success: true,
+    }
+  }
+
+  @Get('/findUnique')
+  async findUnique(@Query('email') email: string) {
+    const data = await this.usersService.findUnique(email)
+    return {
+      data,
+      success: true,
+    }
   }
 }
