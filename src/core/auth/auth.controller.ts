@@ -4,7 +4,7 @@ import { SignInInterface } from 'src/common/interface/auth.interface'
 import { AuthService } from 'src/core/auth/auth.service'
 import { Public } from './decorators/public.decorator'
 
-@ApiTags('Auth')
+@ApiTags('*Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}

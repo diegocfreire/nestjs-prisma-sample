@@ -15,7 +15,13 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config, {
     extraModels: [...PrismaModel.extraModels],
   })
-  SwaggerModule.setup('api-docs', app, document)
+
+  SwaggerModule.setup('api-docs', app, document, {
+    swaggerOptions: {
+      tagsSorter: 'alpha',
+      operationsSorter: 'alpha',
+    },
+  })
 
   await app.listen(3333)
 }
