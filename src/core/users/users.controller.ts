@@ -1,5 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
+import { User } from 'src/dto/user'
 import { UsersService } from './users.service'
 
 @ApiTags('Users')
@@ -8,20 +9,14 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get('/')
-  async findMany() {
-    const data = await this.usersService.findMany()
-    return {
-      data,
-      success: true,
-    }
+  @ApiOkResponse({ type: User, isArray: true })
+  async findMany(): Promise<User[]> {
+    return await this.usersService.findMany()
   }
 
   @Get('/findUnique')
-  async findUnique(@Query('email') email: string) {
-    const data = await this.usersService.findUnique(email)
-    return {
-      data,
-      success: true,
-    }
+  @ApiOkResponse({ type: User })
+  async findUnique(@Query('email') email: string): Promise<User> {
+    return await this.usersService.findUnique(email)
   }
 }

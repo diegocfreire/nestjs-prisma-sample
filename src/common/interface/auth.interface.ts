@@ -1,4 +1,4 @@
-import { User } from '@prisma/client'
+import { User } from 'src/dto/user'
 
 export interface AuthInterface {
   user: User

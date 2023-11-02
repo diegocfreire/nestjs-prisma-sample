@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { User } from './user'
 
 export class Profile {
   @ApiProperty({ type: Number })
@@ -12,4 +13,7 @@ export class Profile {
 
   @ApiProperty({ type: Date })
   updatedAt: Date
+
+  @ApiProperty({ isArray: true, type: () => User })
+  users?: User[]
 }
