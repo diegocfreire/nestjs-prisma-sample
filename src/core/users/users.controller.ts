@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common'
+import { Controller, Get, Query, Req } from '@nestjs/common'
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
 import { User } from 'src/dto/user'
 import { UsersService } from './users.service'
@@ -16,7 +16,11 @@ export class UsersController {
 
   @Get('/findUnique')
   @ApiOkResponse({ type: User })
-  async findUnique(@Query('email') email: string): Promise<User> {
+  async findUnique(
+    @Query('email') email: string,
+    @Req() request: any,
+  ): Promise<User> {
+    console.log(request.user)
     return await this.usersService.findUnique(email)
   }
 }

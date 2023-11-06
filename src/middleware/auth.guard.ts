@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
       const payload = await this.jwtService.verifyAsync(token, {
         secret: jwtConstants.secretKey,
       })
-      request.user = payload
+      request.user = { id: payload.sub, email: payload.email }
     } catch {
       throw new AppError('Token de autenticação inválido.', 403)
     }

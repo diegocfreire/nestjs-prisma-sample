@@ -7,7 +7,7 @@ generator client {
 
 generator prismaClassGenerator {
   provider = "prisma-class-generator"
-  dryRun   = false
+  dryRun   = true // Parametro para gerar diretamente os arquivos (model/DTO) baseados no prisma ou exibir apenas no console (true - console | false - arquivos)
   output   = "../src/dto"
 }
 
