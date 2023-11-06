@@ -20,7 +20,6 @@ export class UsersController {
     @Query('email') email: string,
     @Req() request: any,
   ): Promise<User> {
-    console.log(request.user)
     return await this.usersService.findUnique(email)
   }
 }

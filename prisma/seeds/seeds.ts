@@ -30,7 +30,6 @@ async function seedUsers() {
 }
 
 async function main() {
-  console.log('seeds....')
   await seedProfiles()
   await seedUsers()
 }
