@@ -1,4 +1,4 @@
-import { User } from 'src/dto/user'
+import { User } from 'src/modules/users/dtos/user'
 
 export interface AuthInterface {
   user: User

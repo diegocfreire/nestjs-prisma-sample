@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import AppError from 'src/common/errors/app.error'
-import { AuthInterface } from 'src/common/interface/auth.interface'
+import { AuthInterface } from 'src/modules/auth/interface/auth.interface'
+import AppError from 'src/util/errors/app.error'
 import { UsersService } from '../users/users.service'
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Profile } from './profile'
+import { Profile } from '../../profile/dtos/profile'
 
 export class User {
   @ApiProperty({ type: Number })

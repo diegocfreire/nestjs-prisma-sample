@@ -1,6 +1,6 @@
 import { Controller, Get, Query, Req } from '@nestjs/common'
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
-import { User } from 'src/dto/user'
+import { User } from 'src/modules/users/dtos/user'
 import { UsersService } from './users.service'
 
 @ApiTags('Users')

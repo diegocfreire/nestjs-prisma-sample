@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 import { Operation } from '@prisma/client'
-import { User } from './user'
+import { User } from '../../users/dtos/user'
 
 export class Audit {
   @ApiProperty({ type: Number })
