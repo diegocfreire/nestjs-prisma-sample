@@ -1,11 +1,6 @@
-import { User } from 'src/modules/users/dtos/user'
+import { UserDTO } from 'src/modules/users/dtos/user.dto'
 
 export interface AuthInterface {
-  user: User
+  user: UserDTO
   token: string
-}
-
-export interface SignInInterface {
-  email: string
-  password: string
 }

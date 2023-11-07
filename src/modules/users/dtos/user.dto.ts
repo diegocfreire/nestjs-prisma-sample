@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Profile } from '../../profile/dtos/profile'
+import { ProfileDTO } from '../../profile/dtos/profile.dto'
 
-export class User {
+export class UserDTO {
   @ApiProperty({ type: Number })
   id: number
 
@@ -23,6 +23,6 @@ export class User {
   @ApiProperty({ type: Date })
   updatedAt: Date
 
-  @ApiProperty({ type: () => Profile })
-  profile?: Profile
+  @ApiProperty({ type: () => ProfileDTO })
+  profile?: ProfileDTO
 }

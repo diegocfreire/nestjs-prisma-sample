@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { AppModule } from './modules/app.module'
@@ -24,6 +25,12 @@ async function bootstrap() {
 
   // Starts listening for shutdown hooks
   app.enableShutdownHooks()
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+    }),
+  )
 
   await app.listen(3333)
 }

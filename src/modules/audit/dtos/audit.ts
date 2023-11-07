@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 import { Operation } from '@prisma/client'
-import { User } from '../../users/dtos/user'
+import { UserDTO } from '../../users/dtos/user.dto'
 
 export class Audit {
   @ApiProperty({ type: Number })
@@ -30,6 +30,6 @@ export class Audit {
   @ApiProperty({ type: Date })
   updated_at: Date
 
-  @ApiPropertyOptional({ type: () => User })
-  user?: User
+  @ApiPropertyOptional({ type: () => UserDTO })
+  user?: UserDTO
 }

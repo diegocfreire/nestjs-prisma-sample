@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { User } from '../../users/dtos/user'
+import { UserDTO } from '../../users/dtos/user.dto'
 
-export class Profile {
+export class ProfileDTO {
   @ApiProperty({ type: Number })
   id: number
 
@@ -14,6 +14,6 @@ export class Profile {
   @ApiProperty({ type: Date })
   updatedAt: Date
 
-  @ApiProperty({ isArray: true, type: () => User })
-  users?: User[]
+  @ApiProperty({ isArray: true, type: () => UserDTO })
+  users?: UserDTO[]
 }
