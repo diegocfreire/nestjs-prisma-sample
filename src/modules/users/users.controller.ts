@@ -1,9 +1,10 @@
 import { Controller, Get, Query, Req } from '@nestjs/common'
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger'
 import { UserDTO } from 'src/modules/users/dtos/user.dto'
 import { UsersService } from './users.service'
 
 @ApiTags('Users')
+@ApiBearerAuth('JWT-auth')
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
