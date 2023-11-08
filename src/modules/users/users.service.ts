@@ -1,14 +1,11 @@
 import { Injectable } from '@nestjs/common'
-import { PrismaService } from '../../config/database/prisma.service'
+import { Cron, CronExpression } from '@nestjs/schedule'
 import { UserDTO } from './dtos/user.dto'
 import { UsersRepository } from './users.repository'
 
 @Injectable()
 export class UsersService {
-  constructor(
-    private prismaService: PrismaService,
-    private usersRepository: UsersRepository,
-  ) {}
+  constructor(private usersRepository: UsersRepository) {}
 
   async findMany(): Promise<UserDTO[]> {
     return await this.usersRepository.findMany()
@@ -16,5 +13,10 @@ export class UsersService {
 
   async findUnique(email: string): Promise<UserDTO> {
     return await this.usersRepository.findUnique(email)
+  }
+
+  @Cron(CronExpression.EVERY_10_SECONDS)
+  testeCron() {
+    console.log('Cron - ', new Date())
   }
 }

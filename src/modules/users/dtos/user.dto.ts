@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { User } from '@prisma/client'
 import { ProfileDTO } from '../../profile/dtos/profile.dto'
 
-export class UserDTO {
+export class UserDTO implements User {
   @ApiProperty({ type: Number })
   id: number
 

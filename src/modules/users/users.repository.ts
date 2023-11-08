@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common'
-import { User } from '@prisma/client'
 import { PrismaService } from 'src/config/database/prisma.service'
+import { UserDTO } from './dtos/user.dto'
 import { IUsersInterface } from './interface/users.interface'
 
 @Injectable()
 export class UsersRepository implements IUsersInterface {
   constructor(private prismaService: PrismaService) {}
 
-  async findMany(): Promise<User[]> {
+  async findMany(): Promise<UserDTO[]> {
     return await this.prismaService.user.findMany({
       include: {
         profile: true,
@@ -15,7 +15,7 @@ export class UsersRepository implements IUsersInterface {
     })
   }
 
-  async findUnique(email: string): Promise<User> {
+  async findUnique(email: string): Promise<UserDTO> {
     return await this.prismaService.user.findUnique({
       where: {
         email,
@@ -26,11 +26,11 @@ export class UsersRepository implements IUsersInterface {
     })
   }
 
-  create(data: User): Promise<User> {
+  create(data: UserDTO): Promise<UserDTO> {
     throw new Error('Method not implemented.')
   }
 
-  update(data: User): Promise<void> {
+  update(data: UserDTO): Promise<void> {
     throw new Error('Method not implemented.')
   }
 
