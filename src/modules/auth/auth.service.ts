@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
+import { createHash } from 'crypto'
 import { AuthInterface } from 'src/modules/auth/interface/auth.interface'
 import AppError from 'src/util/errors/app.error'
 import { UsersService } from '../users/users.service'
-
 @Injectable()
 export class AuthService {
   constructor(
@@ -18,6 +18,7 @@ export class AuthService {
       throw new AppError('Usuário incorreto ou sem acesso.', 401)
     }
 
+    pass = createHash('md5').update(pass).digest('hex')
     if (user?.password !== pass) {
       throw new AppError('Senha incorreta.', 401)
     }
